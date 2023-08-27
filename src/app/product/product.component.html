@@ -1,0 +1,172 @@
+<div id="alert_message"></div>
+<div class="col-12 ml-3">
+    <button type="button" class="btn btn-outline-success btn-lg my-5 ml-3 btn-user" data-toggle="modal"
+        data-target="#create_product_modal">
+        Add a product
+    </button>
+</div>
+
+<!-- Create Offer Modal -->
+<div class="modal fade" id="create_product_modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5">Create a product </h1>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form class="form-signin" id="create-form" [formGroup]="createProductForm" (ngSubmit)="createProduct()">
+                    <div class="form">
+                        <h2>Enter product infos</h2>
+                        <div class="mb-3">
+                            <label class="form-label" for="name">Name</label>
+                            <input type="text" class="form-control" formControlName="name" id="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="description">Description</label>
+                            <input type="text" class="form-control" formControlName="description" id="description"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="type">Type</label>
+                            <input type="text" class="form-control" formControlName="type" id="type"
+                                required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="salary">Price</label>
+                            <input type="text" class="form-control" formControlName="price" id="price" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="image_link">Image (PNG or JPG)</label>
+                            <input type="file" (change)="handleFileInput($event)" class="form-control" formControlName="image_link" id="image_link" accept=".png, .jpg" multiple="false">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" form="create-form">Create the product</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Modal -->
+
+<div class="col-12 ml-3">
+    <div *ngIf="products.length !== 0">
+        <div *ngFor="let product of products">
+            <div class="col-12 mb-3 d-flex">    
+                <div class="col-4">
+                    <!-- Product -->
+                    <h2>{{ product.name }}</h2>
+                    <p>Description: {{ product.description }}</p>
+                    <p>Price: {{ product.price }}</p>
+                    <p>Date: {{ product.date }}</p>
+                    <p>Type: {{ product.type }}</p>
+                </div>
+                <div class="col-4">
+                    <img class="images col-12" [src]="getImageUrl(product.image_link)" alt="Product Image" />
+                </div>
+                <div class="col-4 text-center">
+                    <button type="button" class="btn btn-primary mr-3" data-toggle="modal"
+                    [attr.data-target]="'#product_modal'+product.id" (click)="loadProduct(product.id)">
+                        Edit
+                    </button>
+                    <button type="button" class="btn btn-danger ml-3" data-toggle="modal"
+                    [attr.data-target]="'#delete_product_modal_'+product.id">
+                        Delete
+                    </button>
+                </div>
+                <!-- Edit Product Modal -->
+                <div class="modal fade" id="product_modal{{product.id}}" tabindex="-1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel"> Edit a product
+                                </h1>
+                                <button type="button" class="btn-close" data-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form class="form-signin" [formGroup]="editProductForm" (ngSubmit)="editProduct()"
+                                    [attr.id]="'edit_form_'+product.id">
+                                    <div class="form">
+                                        <h2>Entrez les informations de l'annonce</h2>
+                                        <input type="hidden" formControlName="id" [(ngModel)]="currentProduct.id"
+                                            required>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="name">Name</label>
+                                                <input type="text" class="form-control" formControlName="name" id="name" [(ngModel)]="currentProduct.name" required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="description">Description</label>
+                                                <input type="text" class="form-control" formControlName="description" id="description" [(ngModel)]="currentProduct.description"
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="type">Type</label>
+                                                <input type="text" class="form-control" formControlName="type" id="type" [(ngModel)]="currentProduct.type"
+                                                    required>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label class="form-label" for="salary">Price</label>
+                                                <input type="text" class="form-control" formControlName="price" id="price" [(ngModel)]="currentProduct.price" required>
+                                            </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary"
+                                    [attr.form]="'edit_form_'+product.id">
+                                    Edit product
+                                </button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Modal -->
+            </div>
+
+            <!-- Delete Product Modal -->
+            <div class="modal fade" id="delete_product_modal_{{product.id}}" tabindex="-1"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="exampleModalLabel">Delete product
+                                {{product.name}}
+                            </h1>
+                            <button type="button" class="btn-close" data-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure to delete product {{product.name}} ?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger"
+                                (click)="deleteProduct(product.id)">Delete</button>
+                            <button type="button" class="btn btn-secondary"
+                                data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Modal -->
+        </div>
+    </div>
+
+    <div *ngIf="products.length == 0">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    Aucun produtis disponibles
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
