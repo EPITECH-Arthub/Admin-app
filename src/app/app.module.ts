@@ -15,7 +15,7 @@ import { ProductComponent } from './product/product.component';
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    ProductComponent
+    ProductComponent,
   ],
   imports: [
     BrowserModule,

@@ -66,7 +66,7 @@ export class ProductComponent {
       next: (res: any) => {
         if (res) {
           window.location.reload()
-          this.productService.showAlert('Annonce modifiée.', 'success')
+          this.productService.showAlert('Product edited.', 'success')
         }
       },
       error: (err: any) => {

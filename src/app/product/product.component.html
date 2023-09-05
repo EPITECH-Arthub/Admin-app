@@ -37,8 +37,8 @@
                             <input type="text" class="form-control" formControlName="price" id="price" required>
                         </div>
                         <div class="mb-3">
-                            <label class="form-label" for="image_link">Image (PNG or JPG)</label>
-                            <input type="file" (change)="handleFileInput($event)" class="form-control" formControlName="image_link" id="image_link" accept=".png, .jpg" multiple="false">
+                            <label class="form-label" for="image_link">Image (link)</label>
+                            <input type="text" class="form-control" formControlName="image_link" id="image_link" required>
                         </div>
                     </div>
                 </form>
@@ -65,7 +65,7 @@
                     <p>Type: {{ product.type }}</p>
                 </div>
                 <div class="col-4">
-                    <img class="images col-12" [src]="getImageUrl(product.image_link)" alt="Product Image" />
+                    <img class="images col-12" [src]="product.image_link" alt="Product Image" />
                 </div>
                 <div class="col-4 text-center">
                     <button type="button" class="btn btn-primary mr-3" data-toggle="modal"
@@ -95,6 +95,7 @@
                                         <h2>Entrez les informations de l'annonce</h2>
                                         <input type="hidden" formControlName="id" [(ngModel)]="currentProduct.id"
                                             required>
+                                            <input type="hidden" formControlName="image_link" [(ngModel)]="currentProduct.image_link" required>
                                             <div class="mb-3">
                                                 <label class="form-label" for="name">Name</label>
                                                 <input type="text" class="form-control" formControlName="name" id="name" [(ngModel)]="currentProduct.name" required>

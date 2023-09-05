@@ -31,6 +31,7 @@ export class AuthService {
     if (removeToken == null) {
       this.router.navigate(['login']);
     }
+    window.location.reload();
   }
 
   signOut(): void {
