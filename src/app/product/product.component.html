@@ -94,26 +94,30 @@
                                     <div class="form">
                                         <h2>Entrez les informations de l'annonce</h2>
                                         <input type="hidden" formControlName="id" [(ngModel)]="currentProduct.id"
-                                            required>
-                                            <input type="hidden" formControlName="image_link" [(ngModel)]="currentProduct.image_link" required>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="name">Name</label>
-                                                <input type="text" class="form-control" formControlName="name" id="name" [(ngModel)]="currentProduct.name" required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="description">Description</label>
-                                                <input type="text" class="form-control" formControlName="description" id="description" [(ngModel)]="currentProduct.description"
-                                                    required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="type">Type</label>
-                                                <input type="text" class="form-control" formControlName="type" id="type" [(ngModel)]="currentProduct.type"
-                                                    required>
-                                            </div>
-                                            <div class="mb-3">
-                                                <label class="form-label" for="salary">Price</label>
-                                                <input type="text" class="form-control" formControlName="price" id="price" [(ngModel)]="currentProduct.price" required>
-                                            </div>
+                                        required>
+                                        <input type="hidden" formControlName="image_link" [(ngModel)]="currentProduct.image_link" required>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="name">Name</label>
+                                            <input type="text" class="form-control" formControlName="name" id="name" [(ngModel)]="currentProduct.name" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="description">Description</label>
+                                            <input type="text" class="form-control" formControlName="description" id="description" [(ngModel)]="currentProduct.description"
+                                                required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="type">Type</label>
+                                            <input type="text" class="form-control" formControlName="type" id="type" [(ngModel)]="currentProduct.type"
+                                                required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="salary">Price</label>
+                                            <input type="text" class="form-control" formControlName="price" id="price" [(ngModel)]="currentProduct.price" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="image_link">Image (link)</label>
+                                            <input type="text" class="form-control" formControlName="image_link" id="image_link" [(ngModel)]="currentProduct.image_link"required>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
