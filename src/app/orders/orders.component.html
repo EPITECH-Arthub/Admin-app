@@ -1,0 +1,42 @@
+<div *ngIf="orders.length !== 0" id="users">
+    <div class="container mt-5 mb-5">
+        <div class="row justify-content-center">
+            <div class="col-10">
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>ID</th>
+                            <th>Order Name</th>
+                            <th>Email</th>
+                            <th>Name</th>
+                            <th>Provider</th>
+                            <th>Status</th>
+                            <th>Mail</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Transaction ID</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let order of orders">
+                            <td>{{ order.id }}</td>
+                            <td>{{ order.description }}</td>
+                            <td>{{ order.totalPrice }}</td>
+                            <td>{{ order.products }}</td>
+                            <td>{{ order.payer_id }}</td>
+                            <td>{{ order.status }}</td>
+                            <td>{{ order.mail }}</td>
+                            <td>{{ order.name }}</td>
+                            <td>{{ order.surname }}</td>
+                            <td>{{ order.transaction_id }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="orders.length == 0" class="container text-center mt-5">
+    <h1>No Orders Found</h1>
+</div>

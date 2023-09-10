@@ -1,13 +1,14 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, catchError, retry } from 'rxjs';
+import { AppConstants } from '../common/app.constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  url = 'http://localhost:8080/api/v1/products';
+  url = AppConstants.API_BASE_URL + '/api/v1/products';
 
   constructor(private http: HttpClient) { }
 

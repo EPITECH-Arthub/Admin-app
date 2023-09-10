@@ -16,7 +16,6 @@ export class ProductComponent {
   createProductForm: FormGroup;
   editProductForm: FormGroup;
   products: any[] = [];
-  selectedFile: File | undefined;
   currentProduct: any = {};
 
   constructor(
@@ -70,7 +69,7 @@ export class ProductComponent {
         }
       },
       error: (err: any) => {
-        this.productService.showAlert('Impossible de modifier le produit. Vérifiez vos informations !', 'danger')
+        this.productService.showAlert('Can\'t edit product !', 'danger')
       }
     });
   }
@@ -79,20 +78,12 @@ export class ProductComponent {
     this.productService.deleteProduct(productId).subscribe({
       next: (res: any) => {
           window.location.reload()
-          this.productService.showAlert('Annonce supprimée.', 'success')
+          this.productService.showAlert('Product deleted.', 'success')
       },
     });
   }
 
-  handleFileInput(event: any): void {
-    this.selectedFile = event.target.files[0];
-  }
-
-
   createProduct(): void {
-    if(this.selectedFile){
-      this.createProductForm.value.image_link = this.selectedFile.name;
-    }
     this.productService.createProduct(this.createProductForm.value).subscribe({
       next: (res: any) => {
         if (res) {
@@ -105,9 +96,4 @@ export class ProductComponent {
       }
     });
   }
-
-  getImageUrl(imageLink: string): string {
-    return `assets/img/${imageLink}`;
-  }
-
 }

@@ -9,6 +9,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { authInterceptorProviders } from './auth.interceptor';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ProductComponent } from './product/product.component';
+import { UsersComponent } from './users/users.component';
+import { OrdersComponent } from './orders/orders.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +18,8 @@ import { ProductComponent } from './product/product.component';
     LoginComponent,
     DashboardComponent,
     ProductComponent,
+    UsersComponent,
+    OrdersComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,6 @@
 <div id="alert_message"></div>
 <div class="col-12 ml-3">
-    <button type="button" class="btn btn-outline-success btn-lg my-5 ml-3 btn-user" data-toggle="modal"
+    <button type="button" class="btn btn-outline-primary btn-lg my-5 ml-3 btn-user" data-toggle="modal"
         data-target="#create_product_modal">
         Add a product
     </button>
@@ -29,9 +29,12 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="type">Type</label>
-                            <input type="text" class="form-control" formControlName="type" id="type"
-                                required>
-                        </div>
+                            <select class="form-control" formControlName="type" id="type" required>
+                                <option value="street">Street</option>
+                                <option value="inside">Inside</option>
+                                <option value="strangers">Strangers</option>
+                            </select>
+                        </div>                        
                         <div class="mb-3">
                             <label class="form-label" for="salary">Price</label>
                             <input type="text" class="form-control" formControlName="price" id="price" required>
@@ -65,7 +68,7 @@
                     <p>Type: {{ product.type }}</p>
                 </div>
                 <div class="col-4">
-                    <img class="images col-12" [src]="product.image_link" alt="Product Image" />
+                    <img class="image col-12" [src]="product.image_link" alt="Product Image" />
                 </div>
                 <div class="col-4 text-center">
                     <button type="button" class="btn btn-primary mr-3" data-toggle="modal"
@@ -104,16 +107,19 @@
                                             <label class="form-label" for="description">Description</label>
                                             <input type="text" class="form-control" formControlName="description" id="description" [(ngModel)]="currentProduct.description"
                                                 required>
-                                        </div>
-                                        <div class="mb-3">
-                                            <label class="form-label" for="type">Type</label>
-                                            <input type="text" class="form-control" formControlName="type" id="type" [(ngModel)]="currentProduct.type"
-                                                required>
-                                        </div>
+                                        </div>                                                                            
                                         <div class="mb-3">
                                             <label class="form-label" for="salary">Price</label>
                                             <input type="text" class="form-control" formControlName="price" id="price" [(ngModel)]="currentProduct.price" required>
                                         </div>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="type">Type</label>
+                                            <select class="form-control" formControlName="type" id="type" [(ngModel)]="currentProduct.type" required>
+                                                <option value="street">Street</option>
+                                                <option value="inside">Inside</option>
+                                                <option value="strangers">Strangers</option>
+                                            </select>                                            
+                                        </div>                                        
                                         <div class="mb-3">
                                             <label class="form-label" for="image_link">Image (link)</label>
                                             <input type="text" class="form-control" formControlName="image_link" id="image_link" [(ngModel)]="currentProduct.image_link"required>
@@ -135,6 +141,8 @@
                 </div>
                 <!-- End Modal -->
             </div>
+
+            <hr class="sidebar-divider">
 
             <!-- Delete Product Modal -->
             <div class="modal fade" id="delete_product_modal_{{product.id}}" tabindex="-1"
