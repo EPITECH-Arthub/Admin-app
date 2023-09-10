@@ -39,34 +39,28 @@ export class UserService {
 
   getUsers(): Observable<any> {
     return this.http
-      .get<any>(AppConstants.API_URL + 'getAllUser')
+      .get<any>(AppConstants.API_URL + 'users')
       .pipe(retry(1), catchError(this.handleError));
   }
 
   // Delete User
 
   deleteUsers(id: number): void {
-    this.http.delete(AppConstants.API_URL + + id).subscribe({
-      next: (res: any) => {
-        window.location.reload()
-      },
-      error: (err: any) => {
-        window.alert('Impossible de surpprimer l\'utilisateur !');
-      }
-    });
+    this.http.delete(AppConstants.API_URL + 'users/' + id)
+        .subscribe(() => window.location.reload());
   }
 
   // Edit User
 
-  editUser(user_id:string, user: any): Observable<any> {
-    return this.http.put(AppConstants.API_URL +user_id, user).pipe(catchError(this.handleError));
+  editUser(user: any): Observable<any> {
+    return this.http.put(AppConstants.API_URL +user.id, user).pipe(catchError(this.handleError));
   }
 
   // Get user by id
 
   getUserById(id: string): Observable<any> {
     return this.http
-      .get<any>(AppConstants.API_URL+"getUser/"+id)
+      .get<any>(AppConstants.API_URL+"users/"+id)
       .pipe(retry(1), catchError(this.handleError));
   }
 

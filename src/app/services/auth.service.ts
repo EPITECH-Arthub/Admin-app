@@ -38,4 +38,18 @@ export class AuthService {
     window.localStorage.clear();
   }
 
+  showAlert(message: String, type: String) {
+    let alertPlaceholder = document.getElementById('alert_message')
+    if (alertPlaceholder) {
+      const wrapper = document.createElement('div')
+      wrapper.innerHTML = [
+        `<div class="alert alert-${type} alert-dismissible" role="alert">`,
+        `   <div>${message}</div>`,
+        '   <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>',
+        '</div>'
+      ].join('')
+      alertPlaceholder.append(wrapper)
+    }
+  }
+
 }
